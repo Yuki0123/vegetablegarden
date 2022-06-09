@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load fontawesome_6 %}
+{% load tags %}
+
+{% block title %}My Vegetable Garden{% endblock %}
+
+{% block content %}
+
+<div>
+{% regroup growingcrop_list by area as area_list %}
+{% for area in area_list %}
+<div class="box">
+<h6 class="title is-6">{{ area.grouper }}</h6>
+{% for growingcrop in area.list %}
+{% if forloop.counter|modulo:4 == 1 %}<div class="tile is-ancestor">{% endif %}
+    <div class="tile is-parent">
+        <article class="tile is-child notification is-primary">
+            <p class="title is-6">{{growingcrop.vegetable.icon|safe}}{{growingcrop.vegetable}}</p>
+            <p class="subtitle is-7">{{growingcrop.variety}}</p>
+            <p class="subtitle is-7">
+                播種日 {{growingcrop.seeding_date}} <br>
+                植付日 {{growingcrop.planting_date}}
+            </p>
+            <div>
+                <div class="buttons has-addons is-right">
+                <a href="{% url 'vegetablegarden:cropmanagement_list' growingcrop.pk %}">
+                    <button class="button is-small">
+                        <i class="fa-solid fa-note-sticky"></i>お世話ノート</button></a>
+                <a href="{% url 'vegetablegarden:growingcrop_update' growingcrop.pk %}">
+                    <button class="button is-small">
+                    <i class="fa-solid fa-pen"></i></button></a>
+                <a href="{% url 'vegetablegarden:growingcrop_delete' growingcrop.pk %}">
+                    <button class="button is-small">
+                    <i class="fa-solid fa-xmark"></i></button></a>
+            </div>
+            </div>
+        </article>
+
+    </div>
+{% if forloop.counter|modulo:4 == 0 %}</div>
+{% elif forloop.last %}</div>{% endif %}
+{% endfor %}
+</div>
+{% endfor %}
+</div>
+
+{% if user.is_authenticated %}
+{% else %}
+<p>
+    <a class="button is-primary" href="{% url 'login' %}">ログインへ</a>
+</p>
+{% endif %}
+
+
+{% endblock %}

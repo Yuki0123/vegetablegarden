@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}My Vegetable Garden{% endblock %}
+
+{% block content %}
+
+<article class="tile is-child notification is-primary">
+    <p class="title is-5">{{object.growing_crop.vegetable.icon|safe}}{{ object.growing_crop.vegetable }}</p>
+    <p class="subtitle is-6">{{object.growing_crop.variety }}</p>
+    <p class="subtitle is-7">
+        播種日 {{object.growing_crop.seeding_date}} <br>
+        植付日 {{object.growing_crop.planting_date}}
+    </p>
+</article>
+<br>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+        <div class="field">
+            <label class="label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+            <div>
+                {{ field }}
+                {% if field.help_text %}
+                    <span class="helptext">{{ field.help_text }}</span>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+
+    <button class="button is-primary" type="submit">更新</button>
+</form>
+
+{% endblock %}

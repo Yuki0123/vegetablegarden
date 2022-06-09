@@ -1,0 +1,11 @@
+*.pyc
+*~
+/.vscode
+__pycache__
+myvenv
+db.sqlite3
+.DS_Store
+cloud_sql_proxy.exe
+settings.py
+/env
+/migrations

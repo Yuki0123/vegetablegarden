@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}My Vegetable Garden{% endblock %}
+
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button class="button is-primary" type="submit">保存</button>
+</form>
+
+{% endblock %}
