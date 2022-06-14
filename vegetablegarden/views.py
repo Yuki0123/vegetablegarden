@@ -109,13 +109,11 @@ class CropManagementCreate(generic.FormView):
     template_name="cropmanagement_create.html"
     model = CropManagement        
     growingcrop=GrowingCrop.objects.all()
-    success_url=''
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['growingcrop']=self.growingcrop.filter(pk=self.kwargs['growingcrop_pk'])
         context['title']='お世話記録を追加'
-        
         return context
 
     def get_form_kwargs(self):
@@ -125,7 +123,6 @@ class CropManagementCreate(generic.FormView):
 
     def form_valid(self, form):
         instance=form.save(commit=False)
-        print(instance)
         instance.user=self.request.user
         self.object=form.save()
         return redirect('vegetablegarden:cropmanagement_list', growingcrop_pk=self.kwargs['growingcrop_pk'])
@@ -134,12 +131,10 @@ class CropManagementUpdate(generic.UpdateView):
     form_class= CropManagementUpdateForm
     template_name = 'cropmanagement_update.html'
     model = CropManagement
-    #success_url = reverse_lazy('vegetablegarden:cropmanagement_list')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title']='お世話記録を編集'
-
         return context
 
     def form_valid(self, form):
@@ -151,6 +146,7 @@ class CropManagementUpdate(generic.UpdateView):
         print(self.object.growing_crop.pk)
 
         return redirect('vegetablegarden:cropmanagement_list', growingcrop_pk=self.object.growing_crop.pk)
+
 
 class CropManagementDelete(generic.DeleteView):
     model=CropManagement
