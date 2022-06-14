@@ -11,9 +11,12 @@
     <h5 class="title is-5">{{growingcrop.vegetable.icon|safe}}{{ growingcrop.vegetable }}</h5>
     <h5 class="subtitle is-6">{{growingcrop.variety }}</h5>
     <p class="subtitle is-7">
-        播種日 {{growingcrop.seeding_date}} <br>
-        植付日 {{growingcrop.planting_date}}
-    </p>
+        {% if growingcrop.seeding_date %}播種日 {{growingcrop.seeding_date}} <br>{% endif %}
+        {% if growingcrop.planting_date %}植付日 {{growingcrop.planting_date}} <br>{% endif %}
+        {% if growingcrop.transplanting_date %}移植日 {{growingcrop.transplanting_date}} <br>{% endif %}
+        {% if growingcrop.harvest_date_start %}収穫開始日 {{growingcrop.harvest_date_start}} <br>{% endif %}
+        {% if growingcrop.harvest_date_end %}収穫終了日 {{growingcrop.harvest_date_end}} <br>{% endif %}
+</p>
     <a class="button is-small" href="{% url 'vegetablegarden:cropmanagement_create' growingcrop.pk %}"><i class="fa-solid fa-square-plus"></i>お世話記録を追加</a>
 
     {% endwith %}
