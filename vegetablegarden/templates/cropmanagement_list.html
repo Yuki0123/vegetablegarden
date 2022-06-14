@@ -29,6 +29,11 @@
         <p class="has-text-grey">{{ cropmanagement.date }}</p>
         <p class="subtitle is-5">{{ cropmanagement.title }} </p>
         <p>{{ cropmanagement.text }}</p>
+        
+        {% if cropmanagement.image %}
+        <p><img src=/media/{{ cropmanagement.image }} width="50%" height="50%"></p>
+        {% endif %}
+
         <br>
         
         <a class="button is-small is-primary" href="{% url 'vegetablegarden:cropmanagement_update' cropmanagement.pk %}"><i class="fa-solid fa-square-pen"></i>編集</a>

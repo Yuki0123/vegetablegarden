@@ -8,3 +8,5 @@ db.sqlite3
 cloud_sql_proxy.exe
 /env
 /migrations
+settings.py
+/media

@@ -28,3 +28,4 @@ urlpatterns = [
    path('cropmanagement_delete/<int:pk>/',views.CropManagementDelete.as_view(), name='cropmanagement_delete'),
    path('vegetable_create/',views.VegetableCreate.as_view(), name='vegetable_create'),
 ]
+
