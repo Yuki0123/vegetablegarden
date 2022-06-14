@@ -7,7 +7,7 @@ class GrowingCropCreateForm(forms.ModelForm):
     
     class Meta:
         model = GrowingCrop
-        exclude = ('user', 'harvest_date_start', 'harvest_date_end')
+        exclude = ('user',)
         widgets = {
             'vegatable' : forms.Select(attrs={'class': 'input'}),
             'variety': forms.TextInput(attrs={'class': 'input'}),
@@ -15,6 +15,8 @@ class GrowingCropCreateForm(forms.ModelForm):
             'seeding_date': forms.SelectDateWidget(attrs={'class': 'input'}),
             'planting_date': forms.SelectDateWidget(attrs={'class': 'input'}),
             'transplanting_date': forms.SelectDateWidget(attrs={'class': 'input'}),
+            'harvest_date_start': forms.SelectDateWidget(attrs={'class': 'input'}),
+            'harvest_date_end': forms.SelectDateWidget(attrs={'class': 'input'})
             }
 
     def __init__(self, *args, **kwargs):
@@ -27,7 +29,7 @@ class GrowingCropUpdateForm(forms.ModelForm):
 
     class Meta:
         model=GrowingCrop
-        exclude = ('user', 'harvest_date_start', 'harvest_date_end')
+        exclude = ('user',)
         widgets = {
             'vegatable' : forms.Select(attrs={'class': 'input'}),
             'variety': forms.TextInput(attrs={'class': 'input'}),
@@ -35,6 +37,8 @@ class GrowingCropUpdateForm(forms.ModelForm):
             'seeding_date': forms.SelectDateWidget(attrs={'class': 'input'}),
             'planting_date': forms.SelectDateWidget(attrs={'class': 'input'}),
             'transplanting_date': forms.SelectDateWidget(attrs={'class': 'input'}),
+            'harvest_date_start': forms.SelectDateWidget(attrs={'class': 'input'}),
+            'harvest_date_end': forms.SelectDateWidget(attrs={'class': 'input'})
             }
 class CropManagementCreateForm(forms.ModelForm):
 
