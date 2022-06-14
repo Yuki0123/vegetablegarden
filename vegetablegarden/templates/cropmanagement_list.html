@@ -15,7 +15,7 @@
         {% if growingcrop.planting_date %}植付日 {{growingcrop.planting_date}} <br>{% endif %}
         {% if growingcrop.transplanting_date %}移植日 {{growingcrop.transplanting_date}} <br>{% endif %}
         {% if growingcrop.harvest_date_start %}収穫開始日 {{growingcrop.harvest_date_start}} <br>{% endif %}
-        {% if growingcrop.harvest_date_end %}収穫終了日 {{growingcrop.harvest_date_end}} <br>{% endif %}
+        {% if growingcrop.harvest_date_end %}最終収穫日 {{growingcrop.harvest_date_end}} <br>{% endif %}
 </p>
     <a class="button is-small" href="{% url 'vegetablegarden:cropmanagement_create' growingcrop.pk %}"><i class="fa-solid fa-square-plus"></i>お世話記録を追加</a>
 
