@@ -10,3 +10,4 @@ cloud_sql_proxy.exe
 /migrations
 settings.py
 /media
+/static/admin

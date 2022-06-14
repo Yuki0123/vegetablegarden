@@ -2,6 +2,7 @@ from django.utils import timezone
 from django import forms
 from django.db.models import fields
 from .models import Area,GrowingCrop,Vegetable,CropManagement
+from django.contrib.admin.widgets import AdminDateWidget
 
 class GrowingCropCreateForm(forms.ModelForm):
     
@@ -12,11 +13,11 @@ class GrowingCropCreateForm(forms.ModelForm):
             'vegatable' : forms.Select(attrs={'class': 'input'}),
             'variety': forms.TextInput(attrs={'class': 'input'}),
             'area': forms.Select(attrs={'class': 'input'}),
-            'seeding_date': forms.SelectDateWidget(attrs={'class': 'input'}),
-            'planting_date': forms.SelectDateWidget(attrs={'class': 'input'}),
-            'transplanting_date': forms.SelectDateWidget(attrs={'class': 'input'}),
-            'harvest_date_start': forms.SelectDateWidget(attrs={'class': 'input'}),
-            'harvest_date_end': forms.SelectDateWidget(attrs={'class': 'input'})
+            'seeding_date' : AdminDateWidget(),
+            'planting_date': AdminDateWidget(),
+            'transplanting_date': AdminDateWidget(),
+            'harvest_date_start': AdminDateWidget(),
+            'harvest_date_end': AdminDateWidget(),
             }
 
     def __init__(self, *args, **kwargs):
@@ -34,11 +35,11 @@ class GrowingCropUpdateForm(forms.ModelForm):
             'vegatable' : forms.Select(attrs={'class': 'input'}),
             'variety': forms.TextInput(attrs={'class': 'input'}),
             'area': forms.Select(attrs={'class': 'input'}),
-            'seeding_date': forms.SelectDateWidget(attrs={'class': 'input'}),
-            'planting_date': forms.SelectDateWidget(attrs={'class': 'input'}),
-            'transplanting_date': forms.SelectDateWidget(attrs={'class': 'input'}),
-            'harvest_date_start': forms.SelectDateWidget(attrs={'class': 'input'}),
-            'harvest_date_end': forms.SelectDateWidget(attrs={'class': 'input'})
+            'seeding_date': AdminDateWidget(),
+            'planting_date': AdminDateWidget(),
+            'transplanting_date': AdminDateWidget(),
+            'harvest_date_start': AdminDateWidget(),
+            'harvest_date_end': AdminDateWidget(),
             }
 class CropManagementCreateForm(forms.ModelForm):
 
@@ -49,7 +50,7 @@ class CropManagementCreateForm(forms.ModelForm):
             'growing_crop' : forms.Select(attrs={'class': 'input'}),
             'title': forms.TextInput(attrs={'class': 'input'}),
             'text': forms.Textarea(attrs={'class': 'textarea'}),
-            'date': forms.SelectDateWidget(attrs={'class': 'dropdown'})
+            'date': AdminDateWidget(),
             }
         
 
@@ -74,7 +75,7 @@ class CropManagementUpdateForm(forms.ModelForm):
             'growing_crop' : forms.Select(attrs={'class': 'input'}),
             'title': forms.TextInput(attrs={'class': 'input'}),
             'text': forms.Textarea(attrs={'class': 'textarea'}),
-            'date': forms.SelectDateWidget(attrs={'class': 'dropdown'})
+            'date': AdminDateWidget(),
             }
 
         
