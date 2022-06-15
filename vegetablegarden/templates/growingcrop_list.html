@@ -2,84 +2,49 @@
 {% load tags %}
 
 {% block content %}
-<div>
 {% regroup growingcrop_list by area as area_list %}
 {% for area in area_list %}
-<p class="title is-4">{{ area.grouper }}</p>
-{% for growingcrop in area.list %}
-{% if forloop.counter|modulo:4 == 1 %}<div class="tile is-ancestor">{% endif %}
-    <div class="tile is-parent">
-        <article class="tile is-child uk-card uk-card-default uk-card-body uk-width-1-2@m">
-            <a href="{% url 'vegetablegarden:cropmanagement_list' growingcrop.pk %}">
-                <p class="title is-6">{{growingcrop.vegetable.icon|safe}}{{growingcrop.vegetable}}</p>
-            <p class="subtitle is-7">{{growingcrop.variety|default:""}}</p>
-            <p class="subtitle is-7">
-                {% if growingcrop.seeding_date %}播種日 {{growingcrop.seeding_date|date:"Y-m-d"}} <br>{% endif %}
-                {% if growingcrop.planting_date %}植付日 {{growingcrop.planting_date|date:"Y-m-d"}} <br>{% endif %}
-                {% if growingcrop.transplanting_date %}移植日 {{growingcrop.transplanting_date|date:"Y-m-d"}} <br>{% endif %}
-                {% if growingcrop.harvest_date_start %}収穫開始日 {{growingcrop.harvest_date_start|date:"Y-m-d"}} <br>{% endif %}
-                {% if growingcrop.harvest_date_end %}最終収穫日 {{growingcrop.harvest_date_end|date:"Y-m-d"}} <br>{% endif %}
-            </p>
-            </a>
-            <a href="{% url 'vegetablegarden:growingcrop_update' growingcrop.pk %}">
-                <button class="button is-small">
-                <i class="fa-solid fa-pen"></i></button></a>
-            <a href="{% url 'vegetablegarden:growingcrop_delete' growingcrop.pk %}">
-                <button class="button is-small">
-                <i class="fa-solid fa-xmark"></i></button></a>
-        </article>
-    </div>
-    {% if forloop.counter|modulo:4 == 0 %}
-        </div>
-    {% elif forloop.last %}
-        </div>
-    {% endif %}
-{% endfor %}
-{% endfor %}
-</div>
+<h3><span class="uk-text-background">{{ area.grouper }}</span></h3>
 
-{% regroup growingcrop_list by area as area_list %}
-{% for area in area_list %}
-<p class="title is-4">{{ area.grouper }}</p>
-
-{% for growingcrop in area.list %}
-    {% if forloop.counter|modulo:4 == 1 %}<div class="uk-child-width-expand@s" uk-grid>{% endif %}
+<div class="uk-child-width-1-3@s uk-grid-small" uk-grid>
+    {% for growingcrop in area.list %}
     <div>
-    <div class="uk-card uk-card-default ">
-        <a href="{% url 'vegetablegarden:cropmanagement_list' growingcrop.pk %}">
-        <div class="uk-card-header uk-text-center">
-            <p class="title is-6">{{growingcrop.vegetable.icon|safe}}{{growingcrop.vegetable}}</p>
-        </div>
-        </a>
-        <div class="uk-card-body">
-            <p class="uk-text-small">{{growingcrop.variety|default:""}}</p>
-            <p class="uk-text-small">
-            {% if growingcrop.seeding_date %}播種日 {{growingcrop.seeding_date|date:"Y-m-d"}} <br>{% endif %}
-            {% if growingcrop.planting_date %}植付日 {{growingcrop.planting_date|date:"Y-m-d"}} <br>{% endif %}
-            {% if growingcrop.transplanting_date %}移植日 {{growingcrop.transplanting_date|date:"Y-m-d"}} <br>{% endif %}
-            {% if growingcrop.harvest_date_start %}収穫開始日 {{growingcrop.harvest_date_start|date:"Y-m-d"}} <br>{% endif %}
-            {% if growingcrop.harvest_date_end %}最終収穫日 {{growingcrop.harvest_date_end|date:"Y-m-d"}} <br>{% endif %}
-            </p>
-        </div>
-
-        <div class="uk-card-footer uk-text-center">
-            <a href="{% url 'vegetablegarden:growingcrop_update' growingcrop.pk %}">
-                <button class="button is-small">
-                <i class="fa-solid fa-pen"></i></button></a>
-            <a href="{% url 'vegetablegarden:growingcrop_delete' growingcrop.pk %}">
-                <button class="button is-small">
-                <i class="fa-solid fa-xmark"></i></button></a>
+        <div class="uk-tile uk-tile-muted uk-padding-remove">
+            <div class="uk-card uk-card-default">
+                <div class="uk-card-header uk-text-center">
+                    <div class="uk-grid-small uk-flex-middle" uk-grid>
+                        <div class="uk-width-expand">
+                            <h3 class="uk-card-title uk-margin-remove-bottom">{{growingcrop.vegetable.icon|safe}}{{growingcrop.vegetable}}</h3>
+                            <p class="uk-text-meta uk-margin-remove-top">{{growingcrop.variety|default:"---"}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-card-body uk-text-meta">
+                    <p>
+                        {% if growingcrop.seeding_date %}播種日 {{growingcrop.seeding_date|date:"Y-m-d"}} <br>{% endif %}
+                        {% if growingcrop.planting_date %}植付日 {{growingcrop.planting_date|date:"Y-m-d"}} <br>{% endif %}
+                        {% if growingcrop.transplanting_date %}移植日 {{growingcrop.transplanting_date|date:"Y-m-d"}} <br>{% endif %}
+                        {% if growingcrop.harvest_date_start %}収穫開始日 {{growingcrop.harvest_date_start|date:"Y-m-d"}} <br>{% endif %}
+                        {% if growingcrop.harvest_date_end %}最終収穫日 {{growingcrop.harvest_date_end|date:"Y-m-d"}} <br>{% endif %}            
+                    </p>
+                </div>
+                <div class="uk-card-footer uk-text-center">
+                    <div uk-margin>
+                    <a href="{% url 'vegetablegarden:cropmanagement_list' growingcrop.pk %}">
+                        <button class="uk-button uk-button-default uk-button-small uk-width-auto">
+                            <i uk-icon="file-edit"></i>お世話記録</button></a>
+                    <a href="{% url 'vegetablegarden:growingcrop_update' growingcrop.pk %}">
+                        <button class="uk-button uk-button-default uk-button-small uk-width-auto">
+                        <i uk-icon="pencil"></i></button></a>
+                    <a href="{% url 'vegetablegarden:growingcrop_delete' growingcrop.pk %}">
+                        <button class="uk-button uk-button-default uk-button-small uk-width-auto">
+                        <i uk-icon="close"></i></button></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    </div>
-    {% if forloop.counter|modulo:4 == 0 %}
-        </div>
-    {% elif forloop.last %}
-        </div>
-    {% endif %}
-
+    {% endfor %}
+</div>
 {% endfor %}
-{% endfor %}
-
-
 {% endblock %}

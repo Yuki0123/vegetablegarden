@@ -5,11 +5,8 @@
 <div class="uk-card uk-card-default uk-width-1-2@m">
     <div class="uk-card-header">
         <div class="uk-grid-small uk-flex-middle" uk-grid>
-            <div class="uk-width-auto">
-                {{growingcrop.vegetable.icon|safe}}
-            </div>
             <div class="uk-width-expand">
-                <h3 class="title uk-card-title uk-margin-remove-bottom">{{ growingcrop.vegetable }}</h3>
+                <h3 class="title uk-card-title uk-margin-remove-bottom">{{growingcrop.vegetable.icon|safe}}{{ growingcrop.vegetable }}</h3>
                 <p class="uk-text-meta uk-margin-remove-top">{{growingcrop.variety }}</p>
             </div>
         </div>
@@ -22,35 +19,42 @@
         {% if growingcrop.harvest_date_end %}最終収穫日 {{growingcrop.harvest_date_end}} <br>{% endif %}
     </div>
     <div class="uk-card-footer">
-        <a href="{% url 'vegetablegarden:cropmanagement_create' growingcrop.pk %}" class="uk-button uk-button-text">お世話記録を追加</a>
+        <a href="{% url 'vegetablegarden:cropmanagement_create' growingcrop.pk %}">
+            <button class="uk-button uk-button-primary">
+                <i uk-icon="file-edit"></i>お世話記録を追加する</button></a>
+
+        </a>
     </div>
 </div>
 {% endwith %}
 
-<br>
-
-{% if count != 0 %}
-
+<div class="uk-card uk-card-default uk-width-1-1@m">
+    <div class="uk-card-body">
+    {% if count != 0 %}
     {% for cropmanagement in cropmanagement_list %}
-    <article class="box">        
-        <p class="has-text-grey">{{ cropmanagement.date }}</p>
-        <p class="subtitle is-5">{{ cropmanagement.title }} </p>
+    <article class="uk-article">
+    
+        <h1 class="uk-article-title"><a class="uk-link-reset" href="">{{ cropmanagement.title }}</a></h1>
+    
+        <p class="uk-article-meta">{{ cropmanagement.date }}</p>
+    
         <p>{{ cropmanagement.text }}</p>
-        
-        {% if cropmanagement.image %}
-        <p><img src=/media/{{ cropmanagement.image }} width="50%" height="50%"></p>
-        {% endif %}
-
-        <br>
-        
-        <a class="button is-small is-primary" href="{% url 'vegetablegarden:cropmanagement_update' cropmanagement.pk %}"><i class="fa-solid fa-square-pen"></i>編集</a>
-        <a class="button is-small" href="{% url 'vegetablegarden:cropmanagement_delete' cropmanagement.pk %}"><i class="fa-solid fa-xmark"></i></a>
-
+        <div class="uk-grid-small uk-child-width-auto" uk-grid>
+            <div>
+                <a class="uk-button uk-button-text" href="{% url 'vegetablegarden:cropmanagement_update' cropmanagement.pk %}"><i uk-icon="pencil"></i></i>編集</a>
+            </div>
+            <div>
+                <a class="uk-button uk-button-text" href="{% url 'vegetablegarden:cropmanagement_delete' cropmanagement.pk %}"><i uk-icon="close"></i>削除</a>
+            </div>
+        </div>
+    
     </article>
+    {% if not forloop.last %}<hr class="uk-divider-small">{% endif %}
     {% endfor %}
+    {% endif %}
+    </div>
+</div>
 
 
-
-{% endif %}
 
 {% endblock %}
