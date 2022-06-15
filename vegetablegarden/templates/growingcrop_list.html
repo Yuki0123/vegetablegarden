@@ -15,11 +15,11 @@
                     <div class="uk-grid-small uk-flex-middle" uk-grid>
                         <div class="uk-width-expand">
                             <h3 class="uk-card-title uk-margin-remove-bottom">{{growingcrop.vegetable.icon|safe}}{{growingcrop.vegetable}}</h3>
-                            <p class="uk-text-meta uk-margin-remove-top">{{growingcrop.variety|default:"---"}}</p>
                         </div>
                     </div>
                 </div>
                 <div class="uk-card-body uk-text-meta uk-height-small">
+                    <p class="uk-text-meta uk-margin-remove-top">{{growingcrop.variety|default:""}}</p>
                     <p>
                         {% if growingcrop.seeding_date %}播種日 {{growingcrop.seeding_date|date:"Y-m-d"}} <br>{% endif %}
                         {% if growingcrop.planting_date %}植付日 {{growingcrop.planting_date|date:"Y-m-d"}} <br>{% endif %}
