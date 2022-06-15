@@ -5,14 +5,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
     
+    <!-- fontawsome -->
     <script src="https://kit.fontawesome.com/4afe06bffb.js" crossorigin="anonymous"></script>
+    <!-- end fontawsome -->
 
-    <title>{% if request.path != '/' %}{% block title %}{% endblock %} | {% endif %}</title>
+    <!-- bulma burger -->
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', () => {
 
@@ -40,100 +41,78 @@
 
         });
     </script>
+    <!-- end bulma burger -->
 
     <!-- for admin widgets -->
     <link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %}"/>
- 
     <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
     {{ form.media }}
     <script type="text/javascript" src="{% static 'admin/js/core.js' %}"></script>
     <script type="text/javascript" src="{% static 'admin/js/admin/RelatedObjectLookups.js' %}"></script>
     <!-- end for admin widgets -->
  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/js/uikit-icons.min.js"></script>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+
+    <title>栽培かんり{% if request.path != '/' %} - {{title}}{% endif %}</title>
 
 </head>
 
 <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="{% url 'vegetablegarden:growingcrop_list' %}">
-            <img src="{% static 'vegetablegarden/img/logo.png' %}" width="112" height="28">
-          </a>
+    <nav class="uk-navbar-container uk-margin" uk-navbar>
+      <div class="uk-navbar-left">
+          <a class="uk-navbar-item uk-logo" href="#">
+          <img src="{% static 'vegetablegarden/img/logo.png' %}" width="160" height="40"></a>
+      </div>
 
-          
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+      <div id="navbarBasicExample" class="navbar-menu">
       
-        <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item" href="{% url 'vegetablegarden:growingcrop_list' %}">
-              Home
-            </a>
-            <a class="navbar-item" href="https://www.figma.com/file/0lfo4mNdqcUjscPOfKCwZo/2022%E6%98%A5%E5%A4%8F?node-id=0%3A1">
-              配置図
-            </a>
-          </div>
-      
-          <div class="navbar-end">
-            <div class="navbar-item">
-                {% if user.is_authenticated %}
-                <span class="navbar-item">{{ user }}</span>
-
-                  <div class="navbar-start">
-              
-                    <div class="navbar-item has-dropdown is-hoverable">
-                      <a class="navbar-link">
-                        More
-                      </a>
-              
-                      <div class="navbar-dropdown">
-                        <a class="navbar-item" href="{% url 'vegetablegarden:growingcrop_create' %}">
-                          栽培情報を追加
-                        </a>
-                        <hr class="navbar-divider">
-                        <a class="navbar-item" href="{% url 'vegetablegarden:vegetable_create' %}">
-                          野菜を追加
-                        </a>
-                      </div>
-                    </div>
+        <div class="navbar-end">
+          <div class="uk-navbar-item">
+              {% if user.is_authenticated %}
+              <span class="navbar-item">{{ user }} :</span>  
+              <div class="navbar-start">
+                <a class="navbar-item" href="https://www.figma.com/file/0lfo4mNdqcUjscPOfKCwZo/2022%E6%98%A5%E5%A4%8F?node-id=0%3A1">配置図</a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="navbar-link">More</a>
+                  <div class="navbar-dropdown">
+                    <a class="navbar-item" href="{% url 'vegetablegarden:growingcrop_create' %}">栽培情報を追加</a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item" href="{% url 'vegetablegarden:vegetable_create' %}">野菜を追加</a>
                   </div>
-
-                <a class="button is-primary" href="{% url 'logout' %}">
-                <span>Logout</span>
-                <span class="icon">
-                <i class="fas fa-arrow-right"></i>
-                </span>
-                </a>
-                {% else %}
-                <a class="button is-primary" href="{% url 'login' %}">
-                <span class="icon">
-                    <i class="fas fa-arrow-right"></i>
-                </span>
-                <span><strong>Login</strong></span>
-                </a>
-                {% endif %}
+                </div>
+              </div>
+              
+              <a class="uk-button uk-button-default" href="{% url 'logout' %}">Logout<i class="fas fa-arrow-right"></i></a>
+              {% else %}
+              <a class="button is-primary" href="{% url 'login' %}">
+              <span class="icon"><i class="fas fa-arrow-right"></i></span>
+              <span><strong>Login</strong></span>
+              </a>
+              {% endif %}
           </div>
-        </div>
-      </nav>
+        </div>          
+      </div>
+    </nav>
 
-      <section class="hero">
-        <div class="hero-body has-background-white-ter">
-          <p class="title is-4">
-            {{title}}
-          </p>
-          <p class="subtitle is-5">
-            {{subtitle}}
-          </p>
-        </div>
-      </section>
-
-    <div class="section">
+    <div class="uk-section">
+      <div class="uk-container">
+        <p class="uk-heading-divider title"><span>{{title}}</span></p>
         {% block content %}{% endblock %}
+      </div>
+    </div>
+        
     </div>
 
     <footer class="footer">

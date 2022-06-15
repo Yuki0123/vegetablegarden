@@ -1,19 +1,24 @@
 {% extends 'base.html' %}
 {% load tags %}
 
-{% block title %}My Vegetable Garden{% endblock %}
-
 {% block content %}
 <div>
 {% regroup growingcrop_list by area as area_list %}
 {% for area in area_list %}
-<div class="box">
-<h6 class="title is-6">{{ area.grouper }}</h6>
+<h6 class="title uk-card-title">{{ area.grouper }}</h6>
+
+<div class="">
 {% for growingcrop in area.list %}
+
 {% if forloop.counter|modulo:4 == 1 %}<div class="tile is-ancestor">{% endif %}
     <div class="tile is-parent">
-        <article class="tile is-child notification is-primary">
-            <p class="title is-6">{{growingcrop.vegetable.icon|safe}}{{growingcrop.vegetable}}</p>
+
+        <article class="tile is-child uk-card uk-card-default uk-card-body uk-width-1-2@m">
+
+            <a class="title is-6" href="{% url 'vegetablegarden:cropmanagement_list' growingcrop.pk %}">
+                {{growingcrop.vegetable.icon|safe}}{{growingcrop.vegetable}}
+            </a>
+            </p>
             <p class="subtitle is-7">{{growingcrop.variety}}</p>
             <p class="subtitle is-7">
                 {% if growingcrop.seeding_date %}播種日 {{growingcrop.seeding_date}} <br>{% endif %}
@@ -23,19 +28,14 @@
                 {% if growingcrop.harvest_date_end %}最終収穫日 {{growingcrop.harvest_date_end}} <br>{% endif %}
 
             </p>
-            <div>
-                <div class="buttons has-addons is-right">
-                <a href="{% url 'vegetablegarden:cropmanagement_list' growingcrop.pk %}">
-                    <button class="button is-small">
-                        <i class="fa-solid fa-note-sticky"></i>お世話ノート</button></a>
-                <a href="{% url 'vegetablegarden:growingcrop_update' growingcrop.pk %}">
-                    <button class="button is-small">
-                    <i class="fa-solid fa-pen"></i></button></a>
-                <a href="{% url 'vegetablegarden:growingcrop_delete' growingcrop.pk %}">
-                    <button class="button is-small">
-                    <i class="fa-solid fa-xmark"></i></button></a>
-            </div>
-            </div>
+
+            <a href="{% url 'vegetablegarden:growingcrop_update' growingcrop.pk %}">
+                <button class="button is-small">
+                <i class="fa-solid fa-pen"></i></button></a>
+            <a href="{% url 'vegetablegarden:growingcrop_delete' growingcrop.pk %}">
+                <button class="button is-small">
+                <i class="fa-solid fa-xmark"></i></button></a>
+
         </article>
 
     </div>

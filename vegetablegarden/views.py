@@ -92,7 +92,7 @@ class CropManagementList(generic.ListView):
             context['count']=0
 
         context['growingcrop']=self.growingcrop.filter(pk=self.kwargs['growingcrop_pk'])
-        context['title']='お世話リスト'
+        context['title']='お世話ノート'
 
         return context
 
