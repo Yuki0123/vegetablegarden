@@ -10,7 +10,7 @@
     {% for growingcrop in area.list %}
     <div>
         <div class="uk-tile uk-tile-muted uk-padding-remove">
-            <div class="uk-card uk-card-default">
+            <div class="uk-card uk-card-default uk-height-medium">
                 <div class="uk-card-header">
                     <div class="uk-grid-small uk-flex-middle" uk-grid>
                         <div class="uk-width-expand">
@@ -19,7 +19,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="uk-card-body uk-text-meta">
+                <div class="uk-card-body uk-text-meta uk-height-small">
                     <p>
                         {% if growingcrop.seeding_date %}播種日 {{growingcrop.seeding_date|date:"Y-m-d"}} <br>{% endif %}
                         {% if growingcrop.planting_date %}植付日 {{growingcrop.planting_date|date:"Y-m-d"}} <br>{% endif %}
