@@ -11,18 +11,18 @@
             <div class="uk-width-expand">
                 <h3 class="title uk-card-title uk-margin-remove-bottom">{{ growingcrop.vegetable }}</h3>
                 <p class="uk-text-meta uk-margin-remove-top">{{growingcrop.variety }}</p>
-                {% if growingcrop.seeding_date %}播種日 {{growingcrop.seeding_date}} <br>{% endif %}
-                {% if growingcrop.planting_date %}植付日 {{growingcrop.planting_date}} <br>{% endif %}
-                {% if growingcrop.transplanting_date %}移植日 {{growingcrop.transplanting_date}} <br>{% endif %}
-                {% if growingcrop.harvest_date_start %}収穫開始日 {{growingcrop.harvest_date_start}} <br>{% endif %}
-                {% if growingcrop.harvest_date_end %}最終収穫日 {{growingcrop.harvest_date_end}} <br>{% endif %}
-                <a href="{% url 'vegetablegarden:cropmanagement_create' growingcrop.pk %}" class="uk-button uk-button-text">お世話記録を追加</a>
             </div>
         </div>
     </div>
     <div class="uk-card-body">
+        {% if growingcrop.seeding_date %}播種日 {{growingcrop.seeding_date}} <br>{% endif %}
+        {% if growingcrop.planting_date %}植付日 {{growingcrop.planting_date}} <br>{% endif %}
+        {% if growingcrop.transplanting_date %}移植日 {{growingcrop.transplanting_date}} <br>{% endif %}
+        {% if growingcrop.harvest_date_start %}収穫開始日 {{growingcrop.harvest_date_start}} <br>{% endif %}
+        {% if growingcrop.harvest_date_end %}最終収穫日 {{growingcrop.harvest_date_end}} <br>{% endif %}
     </div>
     <div class="uk-card-footer">
+        <a href="{% url 'vegetablegarden:cropmanagement_create' growingcrop.pk %}" class="uk-button uk-button-text">お世話記録を追加</a>
     </div>
 </div>
 {% endwith %}
