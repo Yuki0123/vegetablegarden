@@ -28,9 +28,9 @@
 </div>
 {% endwith %}
 
-<div class="uk-card uk-card-default uk-width-1-1@m">
-    <div class="uk-card-body">
     {% if count != 0 %}
+    <div class="uk-card uk-card-default uk-width-1-1@m">
+    <div class="uk-card-body">
     {% for cropmanagement in cropmanagement_list %}
     <article class="uk-article">
     
@@ -51,9 +51,9 @@
     </article>
     {% if not forloop.last %}<hr class="uk-divider-small">{% endif %}
     {% endfor %}
-    {% endif %}
     </div>
-</div>
+    </div>
+    {% endif %}
 
 
 
