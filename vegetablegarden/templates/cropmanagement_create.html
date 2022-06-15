@@ -2,33 +2,43 @@
 {% load widget_tweaks %}
 
 {% block content %}
-
-<article class="tile is-child notification is-primary">
-    {% with growingcrop=growingcrop.0 %}
-    <p class="title is-5">{{growingcrop.vegetable.icon|safe}}{{ growingcrop.vegetable }}</p>
-    <p class="subtitle is-6">{{growingcrop.variety }}</p>
-    <p class="subtitle is-7">
-        播種日 {{growingcrop.seeding_date}} <br>
-        植付日 {{growingcrop.planting_date}}
-    </p>
-    {% endwith %}
-</article>
-
-<form action="" method="POST" enctype="multipart/form-data">
+{% with growingcrop=growingcrop.0 %}
+<div class="uk-card uk-card-default uk-width-1-1@m">
+    <div class="uk-card-header">
+        <div class="uk-grid-small uk-flex-middle" uk-grid>
+            <div class="uk-width-expand">
+                <h3 class="title uk-card-title uk-margin-remove-bottom">{{growingcrop.vegetable.icon|safe}}{{ growingcrop.vegetable }}</h3>
+                <p class="uk-text-meta uk-margin-remove-top">{{growingcrop.variety }}</p>
+                <p class="uk-text-meta uk-margin-remove-top">
+                    {% if growingcrop.seeding_date %}播種日 {{growingcrop.seeding_date}} <br>{% endif %}
+                    {% if growingcrop.planting_date %}植付日 {{growingcrop.planting_date}} <br>{% endif %}
+                    {% if growingcrop.transplanting_date %}移植日 {{growingcrop.transplanting_date}} <br>{% endif %}
+                    {% if growingcrop.harvest_date_start %}収穫開始日 {{growingcrop.harvest_date_start}} <br>{% endif %}
+                    {% if growingcrop.harvest_date_end %}最終収穫日 {{growingcrop.harvest_date_end}} <br>{% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endwith %}
+<br>
+<form action="" method="POST" enctype="multipart/form-data" class="uk-form-stacked">
     {% csrf_token %}
     {{ form.non_field_errors }}
     {% for field in form %}
-        <div class="field">
-            <label class="label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+        <div class="uk-margin">
+            <label class="uk-form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
             <div>
+                <div class="uk-form-controls">
                 {{ field }}
+                </div>
                 {% if field.help_text %}
                     <span class="helptext">{{ field.help_text }}</span>
                 {% endif %}
             </div>
         </div>
     {% endfor %}
-    <button class="button is-primary" type="submit">追加</button>
+    <button class="uk-button uk-button-primary" type="submit">追加</button>
 </form>
 
 {% endblock %}

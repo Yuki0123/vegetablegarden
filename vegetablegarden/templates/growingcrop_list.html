@@ -11,7 +11,7 @@
     <div>
         <div class="uk-tile uk-tile-muted uk-padding-remove">
             <div class="uk-card uk-card-default">
-                <div class="uk-card-header uk-text-center">
+                <div class="uk-card-header">
                     <div class="uk-grid-small uk-flex-middle" uk-grid>
                         <div class="uk-width-expand">
                             <h3 class="uk-card-title uk-margin-remove-bottom">{{growingcrop.vegetable.icon|safe}}{{growingcrop.vegetable}}</h3>
@@ -28,7 +28,7 @@
                         {% if growingcrop.harvest_date_end %}最終収穫日 {{growingcrop.harvest_date_end|date:"Y-m-d"}} <br>{% endif %}            
                     </p>
                 </div>
-                <div class="uk-card-footer uk-text-center">
+                <div class="uk-card-footer uk-text-right">
                     <div uk-margin>
                     <a href="{% url 'vegetablegarden:cropmanagement_list' growingcrop.pk %}">
                         <button class="uk-button uk-button-default uk-button-small uk-width-auto">

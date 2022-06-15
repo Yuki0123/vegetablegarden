@@ -10,9 +10,9 @@ class GrowingCropCreateForm(forms.ModelForm):
         model = GrowingCrop
         exclude = ('user',)
         widgets = {
-            'vegatable' : forms.Select(attrs={'class': 'input'}),
-            'variety': forms.TextInput(attrs={'class': 'input'}),
-            'area': forms.Select(attrs={'class': 'input'}),
+            'vegatable': forms.Select(attrs={'class': 'uk-select'}),
+            'variety': forms.TextInput(attrs={'class': 'uk-input'}),
+            'area': forms.Select(attrs={'class': 'uk-select'}),
             'seeding_date' : AdminDateWidget(),
             'planting_date': AdminDateWidget(),
             'transplanting_date': AdminDateWidget(),
@@ -32,9 +32,9 @@ class GrowingCropUpdateForm(forms.ModelForm):
         model=GrowingCrop
         exclude = ('user',)
         widgets = {
-            'vegatable' : forms.Select(attrs={'class': 'input'}),
-            'variety': forms.TextInput(attrs={'class': 'input'}),
-            'area': forms.Select(attrs={'class': 'input'}),
+            'vegatable' : forms.Select(attrs={'class': 'uk-select'}),
+            'variety': forms.TextInput(attrs={'class': 'uk-input'}),
+            'area': forms.Select(attrs={'class': 'uk-select'}),
             'seeding_date': AdminDateWidget(),
             'planting_date': AdminDateWidget(),
             'transplanting_date': AdminDateWidget(),
@@ -47,9 +47,9 @@ class CropManagementCreateForm(forms.ModelForm):
         model=CropManagement
         exclude=('user',)
         widgets = {
-            'growing_crop' : forms.Select(attrs={'class': 'input'}),
-            'title': forms.TextInput(attrs={'class': 'input'}),
-            'text': forms.Textarea(attrs={'class': 'textarea'}),
+            'growing_crop' : forms.Select(attrs={'class': 'uk-input'}),
+            'title': forms.TextInput(attrs={'class': 'uk-input'}),
+            'text': forms.Textarea(attrs={'class': 'uk-textarea'}),
             'date': AdminDateWidget(),
             }
         
@@ -72,9 +72,9 @@ class CropManagementUpdateForm(forms.ModelForm):
         model=CropManagement
         exclude=('user','growing_crop')
         widgets = {
-            'growing_crop' : forms.Select(attrs={'class': 'input'}),
-            'title': forms.TextInput(attrs={'class': 'input'}),
-            'text': forms.Textarea(attrs={'class': 'textarea'}),
+            'growing_crop' : forms.Select(attrs={'class': 'uk-input'}),
+            'title': forms.TextInput(attrs={'class': 'uk-input'}),
+            'text': forms.Textarea(attrs={'class': 'uk-textarea'}),
             'date': AdminDateWidget(),
             }
 

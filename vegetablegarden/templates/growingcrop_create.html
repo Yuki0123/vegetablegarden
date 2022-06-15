@@ -3,21 +3,21 @@
 
 {% block content %}
 
-<form action="" method="POST">
+<form action="" method="POST" class="uk-form-stacked">
     {% csrf_token %}
     {{ form.non_field_errors }}
     {% for field in form %}
-        <div class="field">
-            <label class="label" for="{{ field.id_for_label }}">{{ field.label }}</label>
-            <div>
-                {{ field }}
-                {% if field.help_text %}
-                    <span class="helptext">{{ field.help_text }}</span>
-                {% endif %}
-            </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+        <div class="uk-form-controls">
+        {{ field }}
         </div>
+        {% if field.help_text %}
+            <span class="helptext">{{ field.help_text }}</span>
+        {% endif %}
+    </div>
     {% endfor %}
-    <button class="button is-primary" type="submit">追加</button>
+    <button class="uk-button uk-button-primary" type="submit">追加</button>
 </form>
 
 {% endblock %}
