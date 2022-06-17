@@ -37,7 +37,11 @@
     <p class="uk-article-meta">{{ cropmanagement.date }}</p>
     <h1 class="uk-article-title"><a class="uk-link-reset" href="">{{ cropmanagement.title }}</a></h1>
     <p>{{ cropmanagement.text }}</p>
+
+    {% if  cropmanagement.image %}
     <img src="{{ cropmanagement.image.url }}" alt=""/>
+    {% endif %}
+    
     <div class="uk-grid-small uk-child-width-auto" uk-grid>
         <div>
             <a class="uk-button uk-button-text" href="{% url 'vegetablegarden:cropmanagement_update' cropmanagement.pk %}"><i uk-icon="pencil"></i></i>編集</a>
