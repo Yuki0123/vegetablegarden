@@ -19,12 +19,13 @@
                     <span class="uk-text-meta">{{cropmanagement.growing_crop.variety|truncatechars:20}}</span></a>
                 </td>
                 <td class="uk-table-link uk-text-small">
-                    <div class="uk-panel uk-margin-small-left">
+                    <div class="uk-panel">
+                        <a class="uk-link-reset" href="{% url 'vegetablegarden:cropmanagement_list' cropmanagement.growing_crop.pk %}">
+                            {{cropmanagement.text|truncatechars:70}}</a>
+
                         {% if  cropmanagement.image %}
                         <img class="uk-align-right@m uk-margin-remove-adjacent" src="{{ cropmanagement.image.url }}" width="100" alt=""/>
                         {% endif %}
-                        <a class="uk-link-reset" href="{% url 'vegetablegarden:cropmanagement_list' cropmanagement.growing_crop.pk %}">
-                            {{cropmanagement.text|truncatechars:70}}</a>
                     </div>
                 </td>
             </tr>
