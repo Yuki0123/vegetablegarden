@@ -3,22 +3,28 @@
 
 {% block content %}
 
-<h3><a class="uk-link-reset" href="">最新のお世話記録</a></h3>
-<table class="uk-table uk-table-divider uk-table-small uk-table-responsive">
-<tbody>
-    {% for cropmanagement in cropmanagements %}
-    <tr>
-        <td class="uk-width-1-6">{{cropmanagement.date|date:"Y-m-d"}}</td>
-        <td class="uk-width-1-6">{{cropmanagement.title}}</td>
-        <td>{{cropmanagement.text|truncatechars:30}}</td>
-        <td class="uk-width-1-6">
-            <a href="{% url 'vegetablegarden:cropmanagement_list' cropmanagement.growing_crop.pk %}">
-            <button class="uk-button uk-button-default uk-button uk-width-auto"><i uk-icon="triangle-right"></i>詳細</button></a>
-        </td>
-    </tr>
-    {% endfor %}
-</tbody>
-</table>
+<p class="uk-text-large"><i uk-icon="file-edit"></i>最新のお世話記録</p>
+
+<div class="uk-overflow-auto">
+    <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
+        <tbody>
+            {% for cropmanagement in cropmanagements %}
+
+            <tr>
+                <td>{{cropmanagement.date|date:"Y-m-d"}}</td>
+                <td>{{cropmanagement.growing_crop.area}}</td>
+                <td class="">{{cropmanagement.growing_crop.vegetable}}</td>
+                <td class=""></td>
+                <td class="">
+                    <a class="uk-link-reset" href="">{{cropmanagement.text|truncatechars:30}}</a>
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
 
 {% regroup growingcrop_list by area as area_list %}
 {% for area in area_list %}
