@@ -16,7 +16,8 @@
                 <td class="uk-text-nowrap">{{cropmanagement.growing_crop.vegetable}}<br>
                     <span class="uk-text-meta">{{cropmanagement.growing_crop.variety|truncatechars:20}}</span></td>
                 <td class="">
-                    <a class="uk-link-reset" href="">{{cropmanagement.text|truncatechars:50}}</a>
+                    <a class="uk-link-reset" href="{% url 'vegetablegarden:cropmanagement_list' cropmanagement.growing_crop.pk %}">
+                        {{cropmanagement.text|truncatechars:50}}</a>
                 </td>
             </tr>
 
