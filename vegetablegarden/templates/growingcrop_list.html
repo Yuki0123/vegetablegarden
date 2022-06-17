@@ -11,11 +11,14 @@
             {% for cropmanagement in cropmanagements %}
 
             <tr>
-                <td class="uk-text-nowrap">{{cropmanagement.date|date:"Y-m-d"}}</td>
-                <td class="uk-text-nowrap">{{cropmanagement.growing_crop.area}}</td>
-                <td class="uk-text-nowrap">{{cropmanagement.growing_crop.vegetable}}<br>
-                    <span class="uk-text-meta">{{cropmanagement.growing_crop.variety|truncatechars:20}}</span></td>
-                <td class="">
+                <td class="uk-text-nowrap uk-text-meta">{{cropmanagement.date|date:"Y-m-d"}}</td>
+                <td class="uk-text-nowrap uk-text-small">{{cropmanagement.growing_crop.area}}</td>
+                <td class=" uk-table-link uk-text-nowrap uk-text-small">
+                    <a class="uk-link-reset" href="{% url 'vegetablegarden:cropmanagement_list' cropmanagement.growing_crop.pk %}">
+                    {{cropmanagement.growing_crop.vegetable}}<br>
+                    <span class="uk-text-meta">{{cropmanagement.growing_crop.variety|truncatechars:20}}</span></a>
+                </td>
+                <td class="uk-table-link uk-text-small">
                     <a class="uk-link-reset" href="{% url 'vegetablegarden:cropmanagement_list' cropmanagement.growing_crop.pk %}">
                         {{cropmanagement.text|truncatechars:50}}</a>
                 </td>
