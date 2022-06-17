@@ -24,7 +24,7 @@
                                 <a class="uk-link-reset" href="{% url 'vegetablegarden:cropmanagement_list' cropmanagement.growing_crop.pk %}">
                                     {{cropmanagement.text|truncatechars:70}}</a>
                             </div>
-                            <div class="uk-width-1-4">
+                            <div>
                                 {% if  cropmanagement.image %}
                                 <img src="{{ cropmanagement.image.url }}" width="100" alt=""/>
                                 {% endif %}
