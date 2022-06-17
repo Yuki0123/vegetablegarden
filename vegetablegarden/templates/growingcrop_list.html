@@ -2,6 +2,24 @@
 {% load tags %}
 
 {% block content %}
+
+<h3><a class="uk-link-reset" href="">最新のお世話記録</a></h3>
+<table class="uk-table uk-table-divider uk-table-small uk-table-responsive">
+<tbody>
+    {% for cropmanagement in cropmanagements %}
+    <tr>
+        <td class="uk-width-1-6">{{cropmanagement.date|date:"Y-m-d"}}</td>
+        <td class="uk-width-1-6">{{cropmanagement.title}}</td>
+        <td>{{cropmanagement.text|truncatechars:30}}</td>
+        <td class="uk-width-1-6">
+            <a href="{% url 'vegetablegarden:cropmanagement_list' cropmanagement.growing_crop.pk %}">
+            <button class="uk-button uk-button-default uk-button uk-width-auto"><i uk-icon="triangle-right"></i>詳細</button></a>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+
 {% regroup growingcrop_list by area as area_list %}
 {% for area in area_list %}
 <h3><span class="uk-text-background">{{ area.grouper }}</span></h3>
@@ -31,13 +49,13 @@
                 <div class="uk-card-footer uk-text-right">
                     <div uk-margin>
                     <a href="{% url 'vegetablegarden:cropmanagement_list' growingcrop.pk %}">
-                        <button class="uk-button uk-button-default uk-button-small uk-width-auto">
+                        <button class="uk-button uk-button-default uk-button uk-width-auto">
                             <i uk-icon="file-edit"></i>お世話記録</button></a>
                     <a href="{% url 'vegetablegarden:growingcrop_update' growingcrop.pk %}">
-                        <button class="uk-button uk-button-default uk-button-small uk-width-auto">
+                        <button class="uk-button uk-button-default uk-button uk-width-auto">
                         <i uk-icon="pencil"></i></button></a>
                     <a href="{% url 'vegetablegarden:growingcrop_delete' growingcrop.pk %}">
-                        <button class="uk-button uk-button-default uk-button-small uk-width-auto">
+                        <button class="uk-button uk-button-default uk-button uk-width-auto">
                         <i uk-icon="close"></i></button></a>
                     </div>
                 </div>

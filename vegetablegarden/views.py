@@ -29,6 +29,9 @@ class GrowingCropList(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title']='ただいま栽培中'
+
+        context['cropmanagements']=CropManagement.objects.order_by('-date')[:5]
+
         return context
 
     def get_queryset(self):
