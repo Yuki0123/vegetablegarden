@@ -40,8 +40,6 @@
 <p class="uk-text-large"><i uk-icon="happy"></i>ただいま栽培中</p>
 
 <div>
-{% regroup growingcrop_list by area.field as field_list %}
-{% for field in field_list %}
 <div class="uk-card uk-card-default">
     <div class="uk-card-body">
         {% regroup growingcrop_list by area as area_list %}
@@ -69,7 +67,6 @@
     </div>
  </div>
 
-{% endfor %}
 </div>
 
 {% regroup growingcrop_list by area as area_list %}
