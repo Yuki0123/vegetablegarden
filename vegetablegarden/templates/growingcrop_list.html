@@ -55,7 +55,7 @@
                 {% for area in area_list %}
                     {% for growingcrop in area.list %}
                         <p>
-                            <a class="uk-button uk-button-text" href="{% url 'vegetablegarden:cropmanagement_list' growingcrop.pk %}">
+                            <a class="uk-link-text" href="{% url 'vegetablegarden:cropmanagement_list' growingcrop.pk %}">
                             {{area.grouper}} - {{growingcrop.vegetable.icon|safe}}{{growingcrop.vegetable}}
                             {% if growingcrop.variety %} - {% endif %}
                             {{growingcrop.variety|default:""}}
