@@ -84,7 +84,7 @@
         {% for area in area_list %}
             {% for harvestedcrop in area.list %}
                 <p>
-                    <a class="uk-button uk-button-text" href="{% url 'vegetablegarden:cropmanagement_list' harvestedcrop.pk %}">
+                    <a class="uk-link-text" href="{% url 'vegetablegarden:cropmanagement_list' harvestedcrop.pk %}">
                     {{area.grouper}} - {{harvestedcrop.vegetable.icon|safe}}{{harvestedcrop.vegetable}}
                     {% if harvestedcrop.variety %} - {% endif %}
                     {{harvestedcrop.variety|default:""}}
