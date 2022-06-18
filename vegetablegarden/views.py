@@ -31,11 +31,11 @@ class GrowingCropList(generic.ListView):
         context['title']='ただいま栽培中'
 
         context['cropmanagements']=CropManagement.objects.order_by('-date')[:5]
-
+        context['harvestedcrop']=GrowingCrop.objects.filter(harvest_date_end__isnull=False).order_by('area__name')
         return context
 
     def get_queryset(self):
-        return super().get_queryset().filter(user=self.request.user.pk).order_by('area__name')
+        return super().get_queryset().filter(user=self.request.user.pk,harvest_date_end__isnull=True).order_by('area__name')
 
 class GrowingCropCreate(generic.FormView):
     form_class= GrowingCropCreateForm

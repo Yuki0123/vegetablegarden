@@ -8,6 +8,11 @@
             <div class="uk-width-expand">
                 <h3 class="title uk-card-title uk-margin-remove-bottom">{{growingcrop.vegetable.icon|safe}}{{ growingcrop.vegetable }}</h3>
                 <p class="uk-text-meta uk-margin-remove-top">{{growingcrop.variety|default:""}}</p>
+                <a class="uk-button uk-button-default uk-button-small" href="{% url 'vegetablegarden:growingcrop_update' growingcrop.pk %}">
+                    <i uk-icon="pencil"></i></a>
+                <a class="uk-button uk-button-default uk-button-small" href="{% url 'vegetablegarden:growingcrop_delete' growingcrop.pk %}">
+                    <i uk-icon="close"></i></a>
+        
             </div>
         </div>
     </div>
@@ -24,6 +29,7 @@
                 <i uk-icon="file-edit"></i>お世話記録を追加する</button></a>
 
         </a>
+        
     </div>
 </div>
 {% endwith %}
@@ -39,7 +45,7 @@
     <p>{{ cropmanagement.text }}</p>
 
     {% if  cropmanagement.image %}
-    <img src="{{ cropmanagement.image.url }}" alt=""/>
+    <img src="{{ cropmanagement.image.url }}" class="uk-width-2-3@m" alt=""/>
     {% endif %}
     
     <div class="uk-grid-small uk-child-width-auto" uk-grid>
@@ -52,6 +58,8 @@
     </div>
 
 </article>
+
+
 {% if not forloop.last %}<hr class="uk-divider-small">{% endif %}
 {% endfor %}
 </div>
