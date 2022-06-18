@@ -21,7 +21,7 @@
         {% if growingcrop.planting_date %}植付日 {{growingcrop.planting_date}} <br>{% endif %}
         {% if growingcrop.transplanting_date %}移植日 {{growingcrop.transplanting_date}} <br>{% endif %}
         {% if growingcrop.harvest_date_start %}収穫開始日 {{growingcrop.harvest_date_start}} <br>{% endif %}
-        {% if growingcrop.harvest_date_end %}最終収穫日 {{growingcrop.harvest_date_end}} <br>{% endif %}
+        {% if growingcrop.harvest_date_end %}収穫完了日 {{growingcrop.harvest_date_end}} <br>{% endif %}
     </div>
     <div class="uk-card-footer">
         <a href="{% url 'vegetablegarden:cropmanagement_create' growingcrop.pk %}">

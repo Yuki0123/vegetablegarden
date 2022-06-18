@@ -80,7 +80,7 @@
         <div class="uk-card uk-card-default">
             <div class="uk-card-body">
 
-        {% regroup harvestedcrop by area as area_list %}
+        {% regroup harvestedcrops by area as area_list %}
         {% for area in area_list %}
             {% for harvestedcrop in area.list %}
                 <p>
@@ -95,7 +95,7 @@
                     {% if harvestedcrop.planting_date %}植付日 {{harvestedcrop.planting_date|date:"Y-m-d"}}&nbsp;&nbsp;{% endif %}
                     {% if harvestedcrop.transplanting_date %}移植日 {{harvestedcrop.transplanting_date|date:"Y-m-d"}}&nbsp;&nbsp;{% endif %}
                     {% if harvestedcrop.harvest_date_start %}収穫開始日 {{harvestedcrop.harvest_date_start|date:"Y-m-d"}}&nbsp;&nbsp;{% endif %}
-                    {% if harvestedcrop.harvest_date_end %}最終収穫日 {{harvestedcrop.harvest_date_end|date:"Y-m-d"}}{% endif %}            
+                    {% if harvestedcrop.harvest_date_end %}収穫完了日 {{harvestedcrop.harvest_date_end|date:"Y-m-d"}}{% endif %}            
 
                 </span>
                 </p>
