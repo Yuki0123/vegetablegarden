@@ -67,7 +67,7 @@
       </div>
 
       <div class="uk-navbar-item uk-visible@s">
-        <a class="uk-button uk-button-default" href="{% url 'logout' %}">Logout<i class="fas fa-arrow-right"></i></a>
+        <a class="uk-button uk-button-default" href="{% url 'logout' %}">Logout<i uk-icon="sign-out"></i></a>
       </div>
 
       <div class="uk-navbar-right uk-hidden@s">
@@ -99,7 +99,7 @@
           
         </ul>
         <div class="">
-          <a class="uk-button uk-button-default" href="{% url 'logout' %}">Logout<i class="fas fa-arrow-right"></i></a>
+          <a class="uk-button uk-button-default" href="{% url 'logout' %}">Logout<i uk-icon="sign-out"></i></a>
         </div>
       {% endif %}
     </div>
@@ -108,7 +108,7 @@
   <div class="uk-section">
     <div class="uk-container">
       {% if request.path != '/' %}
-      <h2 class="uk-heading-divider">{{title}}</h2>
+      <p class="uk-h4"><i uk-icon="happy"></i>&nbsp;{{title}}</p>
       {% endif %}
       {% block content %}{% endblock %}
     </div>

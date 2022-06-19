@@ -3,21 +3,32 @@
 
 {% block content %}
 {% with growingcrop=object.growing_crop %}
-<div class="uk-card uk-card-default uk-width-1-1@m">
-    <div class="uk-card-header">
-        <div class="uk-grid-small uk-flex-middle" uk-grid>
-            <div class="uk-width-expand">
-                <h3 class="title uk-card-title uk-margin-remove-bottom">{{growingcrop.vegetable.icon|safe}}{{ growingcrop.vegetable }}</h3>
-                <p class="uk-text-meta uk-margin-remove-top">{{growingcrop.variety }}</p>
-                <p class="uk-text-meta uk-margin-remove-top">
-                    {% if growingcrop.seeding_date %}播種日 {{growingcrop.seeding_date}} <br>{% endif %}
-                    {% if growingcrop.planting_date %}植付日 {{growingcrop.planting_date}} <br>{% endif %}
-                    {% if growingcrop.transplanting_date %}移植日 {{growingcrop.transplanting_date}} <br>{% endif %}
-                    {% if growingcrop.harvest_date_start %}収穫開始日 {{growingcrop.harvest_date_start}} <br>{% endif %}
-                    {% if growingcrop.harvest_date_end %}収穫完了日 {{growingcrop.harvest_date_end}} <br>{% endif %}
-                </p>
+<div class="uk-width-1-1@s">
+    <div class="uk-card uk-card-default uk-card-body">
+        <div class="uk-child-width-expand@s" uk-grid>
+            <div class="uk-text-bold">{{growingcrop.vegetable}}</div> 
+            <div class="uk-inline uk-text-right">
+                <a class="uk-link-text" type="button">
+                    <span uk-icon="icon:more-vertical"></span>
+                </a>
+                <div uk-dropdown="mode: click">
+                    <ul class="uk-nav uk-dropdown-nav">
+                        <li><a href="{% url 'vegetablegarden:growingcrop_update' growingcrop.pk %}">栽培情報を編集</a></li>
+                        <li><a href="{% url 'vegetablegarden:growingcrop_delete' growingcrop.pk %}">栽培情報を削除</a></li>
+                    </ul>
+                </div>
             </div>
+
         </div>
+        
+        <span class="uk-text-small uk-text-light">{{growingcrop.variety|default:""}}</span><br>
+        <span class="uk-text-meta">
+        {% if growingcrop.seeding_date %}播種日 {{growingcrop.seeding_date|date:"Y-m-d"}}&nbsp;{% endif %}
+        {% if growingcrop.planting_date %}植付日 {{growingcrop.planting_date|date:"Y-m-d"}}&nbsp;{% endif %}
+        {% if growingcrop.transplanting_date %}移植日 {{growingcrop.transplanting_date|date:"Y-m-d"}}&nbsp;{% endif %}
+        {% if growingcrop.harvest_date_start %}収穫開始日 {{growingcrop.harvest_date_start|date:"Y-m-d"}}&nbsp;{% endif %}
+        {% if growingcrop.harvest_date_end %}収穫完了日 {{growingcrop.harvest_date_end|date:"Y-m-d"}}{% endif %}            
+        </span>
     </div>
 </div>
 {% endwith %}

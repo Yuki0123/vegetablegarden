@@ -2,68 +2,65 @@
 
 {% block content %}
 {% with growingcrop=growingcrop.0 %}
-<div class="uk-card uk-card-default uk-width-1-1@m">
-    <div class="uk-card-header">
-        <div class="uk-grid-small uk-flex-middle" uk-grid>
-            <div class="uk-width-expand">
-                <h3 class="title uk-card-title uk-margin-remove-bottom">{{growingcrop.vegetable.icon|safe}}{{ growingcrop.vegetable }}</h3>
-                <p class="uk-text-meta uk-margin-remove-top">{{growingcrop.variety|default:""}}</p>
-                <a class="uk-button uk-button-default uk-button-small" href="{% url 'vegetablegarden:growingcrop_update' growingcrop.pk %}">
-                    <i uk-icon="pencil"></i></a>
-                <a class="uk-button uk-button-default uk-button-small" href="{% url 'vegetablegarden:growingcrop_delete' growingcrop.pk %}">
-                    <i uk-icon="close"></i></a>
-        
+<div class="uk-width-1-1@s">
+    <div class="uk-card uk-card-default uk-card-body">
+        <div class="uk-child-width-expand@s" uk-grid>
+            <div class="uk-text-bold">{{growingcrop.vegetable}}</div> 
+            <div class="uk-inline uk-text-right">
+                <a class="uk-link-text" type="button">
+                    <span uk-icon="icon:more-vertical"></span>
+                </a>
+                <div uk-dropdown="mode: click">
+                    <ul class="uk-nav uk-dropdown-nav">
+                        <li><a href="{% url 'vegetablegarden:growingcrop_update' growingcrop.pk %}">栽培情報を編集</a></li>
+                        <li><a href="{% url 'vegetablegarden:growingcrop_delete' growingcrop.pk %}">栽培情報を削除</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="uk-card-body">
-        {% if growingcrop.seeding_date %}播種日 {{growingcrop.seeding_date}} <br>{% endif %}
-        {% if growingcrop.planting_date %}植付日 {{growingcrop.planting_date}} <br>{% endif %}
-        {% if growingcrop.transplanting_date %}移植日 {{growingcrop.transplanting_date}} <br>{% endif %}
-        {% if growingcrop.harvest_date_start %}収穫開始日 {{growingcrop.harvest_date_start}} <br>{% endif %}
-        {% if growingcrop.harvest_date_end %}収穫完了日 {{growingcrop.harvest_date_end}} <br>{% endif %}
-    </div>
-    <div class="uk-card-footer">
-        <a href="{% url 'vegetablegarden:cropmanagement_create' growingcrop.pk %}">
-            <button class="uk-button uk-button-primary">
-                <i uk-icon="file-edit"></i>お世話記録を追加する</button></a>
 
-        </a>
+        </div>
         
+        <span class="uk-text-small uk-text-light">{{growingcrop.variety|default:""}}</span><br>
+        <span class="uk-text-meta">
+        {% if growingcrop.seeding_date %}播種日 {{growingcrop.seeding_date|date:"Y-m-d"}}&nbsp;{% endif %}
+        {% if growingcrop.planting_date %}植付日 {{growingcrop.planting_date|date:"Y-m-d"}}&nbsp;{% endif %}
+        {% if growingcrop.transplanting_date %}移植日 {{growingcrop.transplanting_date|date:"Y-m-d"}}&nbsp;{% endif %}
+        {% if growingcrop.harvest_date_start %}収穫開始日 {{growingcrop.harvest_date_start|date:"Y-m-d"}}&nbsp;{% endif %}
+        {% if growingcrop.harvest_date_end %}収穫完了日 {{growingcrop.harvest_date_end|date:"Y-m-d"}}{% endif %}            
+        </span>
     </div>
 </div>
 {% endwith %}
-<br>
+
+<div>
+<a class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" href="{% url 'vegetablegarden:cropmanagement_create' growingcrop.0.pk %}">
+    <span uk-icon="icon:plus-circle">お世話記録を追加する</span></a>
+
+</div>
+
+
 {% if count != 0 %}
-<div class="uk-card uk-card-default uk-width-1-1@m">
-<div class="uk-card-body">
 {% for cropmanagement in cropmanagement_list %}
 <article class="uk-article">
-
     <p class="uk-article-meta">{{ cropmanagement.date }}</p>
-    <h1 class="uk-article-title"><a class="uk-link-reset" href="">{{ cropmanagement.title }}</a></h1>
+    <p class="uk-text-bold uk-text-large">{{ cropmanagement.title }}</p>
     <p>{{ cropmanagement.text }}</p>
 
     {% if  cropmanagement.image %}
     <img src="{{ cropmanagement.image.url }}" class="uk-width-2-3@m" alt=""/>
     {% endif %}
-    
-    <div class="uk-grid-small uk-child-width-auto" uk-grid>
+
+    <div class="uk-grid-small" uk-grid>
         <div>
-            <a class="uk-button uk-button-text" href="{% url 'vegetablegarden:cropmanagement_update' cropmanagement.pk %}"><i uk-icon="pencil"></i></i>編集</a>
+            <a class="uk-button uk-button-text" href="{% url 'vegetablegarden:cropmanagement_update' cropmanagement.pk %}"><span uk-icon="pencil">編集</span></a>
         </div>
         <div>
-            <a class="uk-button uk-button-text" href="{% url 'vegetablegarden:cropmanagement_delete' cropmanagement.pk %}"><i uk-icon="close"></i>削除</a>
+            <a class="uk-button uk-button-text" href="{% url 'vegetablegarden:cropmanagement_delete' cropmanagement.pk %}"><span uk-icon="minus-circle">削除</span></a>
         </div>
     </div>
-
 </article>
-
-
-{% if not forloop.last %}<hr class="uk-divider-small">{% endif %}
+{% if not forloop.last %}<hr class="uk-devider">{% endif %}
 {% endfor %}
-</div>
-</div>
 {% endif %}
 
 
