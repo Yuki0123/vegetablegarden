@@ -6,18 +6,19 @@
 <p class="uk-h4"><i uk-icon="file-edit"></i>&nbsp;最新のお世話記録</p>
 
 {% for cropmanagement in cropmanagements %}
-<a href="{% url 'vegetablegarden:cropmanagement_list' cropmanagement.growing_crop.pk %}" class="uk-display-block uk-link-toggle">
-    <div class="uk-animation-toggle " tabindex="0" >
+<a href="{% url 'vegetablegarden:cropmanagement_list' cropmanagement.growing_crop.pk %}" class="uk-display-block uk-link-toggle uk-text-small">
+    <div class="uk-animation-toggle" tabindex="0" >
     <div class="uk-grid-match uk-animation-fade" uk-grid>
         <div class="uk-width-auto@s">
             <div class="">{{cropmanagement.date|date:"Y-m-d"}}</div>
+            <div><span class="uk-badge">{{cropmanagement.growing_crop.area}}</span></div>
         </div>
         <div class="uk-width-1-4@s">
-            <div class="uk-width-1-1" uk-grid>
-                <div class="uk-width-auto"><span class="uk-badge">{{cropmanagement.growing_crop.area}}</span></div>
-                <div class="uk-width-auto uk-text-bold">{{cropmanagement.growing_crop.vegetable}}</div>
+            <div class="uk-width-1-1">
+                <div class="uk-width-auto"><span class="uk-text-bold">{{cropmanagement.growing_crop.vegetable}}</span></div>
+                <div class="uk-width-auto"><span class="uk-text-meta">{{cropmanagement.growing_crop.variety|truncatechars:20}}</span></div>
             </div>
-            <span class="uk-text-meta">{{cropmanagement.growing_crop.variety|truncatechars:20}}</span>
+            
         </div>
         <div class="uk-width-expand@s">
             <div class="" uk-grid>
