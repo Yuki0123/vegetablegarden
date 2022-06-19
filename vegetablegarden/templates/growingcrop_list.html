@@ -11,7 +11,7 @@
     <div class="uk-grid-match uk-animation-fade" uk-grid>
         <div class="uk-width-auto@s">
             <div class="">{{cropmanagement.date|date:"Y-m-d"}}</div>
-            <div><span class="uk-badge">{{cropmanagement.growing_crop.area}}</span></div>
+            <div><span class="uk-badge">{{cropmanagement.growing_crop.area|truncatechars:10}}</span></div>
         </div>
         <div class="uk-width-1-4@s">
             <div class="uk-width-1-1">
