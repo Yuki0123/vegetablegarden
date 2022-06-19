@@ -22,11 +22,13 @@
         </div>
         <div class="uk-width-expand@s">
             <div class="" uk-grid>
-                <div class="uk-width-2-3">{{cropmanagement.text|truncatechars:50|linebreaksbr}}</div>
                 {% if cropmanagement.image %}
+                <div class="uk-width-2-3">{{cropmanagement.text|truncatechars:50|linebreaksbr}}</div>
                 <div class="uk-width-auto">
                     <img src="{{ cropmanagement.image.url }}" width="100">
                 </div>
+                {% else %}
+                <div class="uk-width-1-1">{{cropmanagement.text|truncatechars:50|linebreaksbr}}</div>
                 {% endif %}
 
             </div>
