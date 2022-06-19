@@ -18,7 +18,6 @@
                     </ul>
                 </div>
             </div>
-
         </div>
         
         <span class="uk-text-small uk-text-light">{{growingcrop.variety|default:""}}</span><br>
@@ -32,7 +31,6 @@
     </div>
 </div>
 {% endwith %}
-<br>
 <form action="" method="POST" enctype="multipart/form-data" class="uk-form-stacked">
     {% csrf_token %}
     {{ form.non_field_errors }}
