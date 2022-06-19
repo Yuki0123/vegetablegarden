@@ -11,7 +11,7 @@
     <div class="uk-grid-match uk-animation-fade" uk-grid>
         <div class="uk-width-1-6@s">
             <div class="">{{cropmanagement.date|date:"Y-m-d"}}</div>
-            <div><span class="uk-badge">{{cropmanagement.growing_crop.area|truncatechars:4}}</span></div>
+            <div><span class="uk-badge">{{cropmanagement.growing_crop.area|truncatechars:8}}</span></div>
         </div>
         <div class="uk-width-1-4@s">
             <div class="uk-width-1-1">
@@ -23,7 +23,7 @@
         <div class="uk-width-expand@s">
             <div class="" uk-grid>
                 <div class="uk-width-2-3">{{cropmanagement.text|truncatechars:50|linebreaksbr}}</div>
-                {% if  cropmanagement.image %}
+                {% if cropmanagement.image %}
                 <div class="uk-width-auto">
                     <img src="{{ cropmanagement.image.url }}" width="100">
                 </div>
