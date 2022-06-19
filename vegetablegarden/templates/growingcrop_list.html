@@ -46,7 +46,6 @@
 {% if growingcrop_list.count > 0 %}
 <hr class="uk-divider-icon">
 
-
 <ul uk-tab>
     <li><a href="#"><i uk-icon="happy"></i>&nbsp;ただいま栽培中</a></li>
     <li><a href="#"><i uk-icon="album"></i>&nbsp;栽培終了</a></li>
@@ -55,59 +54,55 @@
 
 <ul class="uk-switcher uk-margin">
     <li>
-        <div class="uk-card uk-card-default">
-            <div class="uk-card-body">
-                {% regroup growingcrop_list by area as area_list %}
-                {% for area in area_list %}
-                    {% for growingcrop in area.list %}
-                        <p>
-                            <span class="uk-badge">{{area.grouper}}</span>&nbsp;
-                            <a class="uk-link-text" href="{% url 'vegetablegarden:cropmanagement_list' growingcrop.pk %}">
-                            <span class="uk-text-bold">{{growingcrop.vegetable}}</span>&nbsp;
-                            <span class="uk-text-small uk-text-light">{{growingcrop.variety|default:""}}</span>
-                            </a>
-                            <br>
-                            <span class="uk-text-meta">
-                            {% if growingcrop.seeding_date %}播種日 {{growingcrop.seeding_date|date:"Y-m-d"}}&nbsp;{% endif %}
-                            {% if growingcrop.planting_date %}|&nbsp;植付日 {{growingcrop.planting_date|date:"Y-m-d"}}&nbsp;{% endif %}
-                            {% if growingcrop.transplanting_date %}|&nbsp;移植日 {{growingcrop.transplanting_date|date:"Y-m-d"}}&nbsp;{% endif %}
-                            {% if growingcrop.harvest_date_start %}|&nbsp;収穫開始日 {{growingcrop.harvest_date_start|date:"Y-m-d"}}&nbsp;{% endif %}
-                            {% if growingcrop.harvest_date_end %}|&nbsp;収穫完了日 {{growingcrop.harvest_date_end|date:"Y-m-d"}}{% endif %}            
-                            </span>
-                        </p>
-                    {% endfor %}
-                    {% if not forloop.last %} <hr class="uk-divider-small"> {% endif %}
-                {% endfor %}
-            </div>
+        {% regroup growingcrop_list by area as area_list %}
+        {% for area in area_list %}
+        <div class="uk-card uk-card-default uk-card-body">
+        {% for growingcrop in area.list %}
+        <p>
+            <span class="uk-badge">{{area.grouper}}</span>&nbsp;
+            <a class="uk-link-text" href="{% url 'vegetablegarden:cropmanagement_list' growingcrop.pk %}">
+            <span class="uk-text-bold">{{growingcrop.vegetable}}</span>&nbsp;
+            <span class="uk-text-small uk-text-light">{{growingcrop.variety|default:""}}</span>
+            </a>
+            <br>
+            <span class="uk-text-meta">
+            {% if growingcrop.seeding_date %}播種日 {{growingcrop.seeding_date|date:"Y-m-d"}}&nbsp;{% endif %}
+            {% if growingcrop.planting_date %}植付日 {{growingcrop.planting_date|date:"Y-m-d"}}&nbsp;{% endif %}
+            {% if growingcrop.transplanting_date %}移植日 {{growingcrop.transplanting_date|date:"Y-m-d"}}&nbsp;{% endif %}
+            {% if growingcrop.harvest_date_start %}収穫開始日 {{growingcrop.harvest_date_start|date:"Y-m-d"}}&nbsp;{% endif %}
+            {% if growingcrop.harvest_date_end %}収穫完了日 {{growingcrop.harvest_date_end|date:"Y-m-d"}}{% endif %}            
+            </span>
+        </p>
+        {% endfor %}
         </div>
+        {% if not forloop.last %}<br>{% endif %}
+        {% endfor %}
     </li>
     <li>
-        <div class="uk-card uk-card-default">
-            <div class="uk-card-body">
-
         {% regroup harvestedcrops by area as area_list %}
         {% for area in area_list %}
-            {% for harvestedcrop in area.list %}
-            <p>
-                <span class="uk-badge">{{area.grouper}}</span>&nbsp;
-                <a class="uk-link-text" href="{% url 'vegetablegarden:cropmanagement_list' harvestedcrop.pk %}">
-                <span class="uk-text-bold">{{harvestedcrop.vegetable}}</span>&nbsp;
-                <span class="uk-text-small uk-text-light">{{harvestedcrop.variety|default:""}}</span>
-                </a>
-                <br>
-                <span class="uk-text-meta">
-                {% if harvestedcrop.seeding_date %}播種日 {{harvestedcrop.seeding_date|date:"Y-m-d"}}&nbsp;{% endif %}
-                {% if harvestedcrop.planting_date %}|&nbsp;植付日 {{harvestedcrop.planting_date|date:"Y-m-d"}}&nbsp;{% endif %}
-                {% if harvestedcrop.transplanting_date %}|&nbsp;移植日 {{harvestedcrop.transplanting_date|date:"Y-m-d"}}&nbsp;{% endif %}
-                {% if harvestedcrop.harvest_date_start %}|&nbsp;収穫開始日 {{harvestedcrop.harvest_date_start|date:"Y-m-d"}}&nbsp;{% endif %}
-                {% if harvestedcrop.harvest_date_end %}|&nbsp;収穫完了日 {{harvestedcrop.harvest_date_end|date:"Y-m-d"}}{% endif %}            
-                </span>
-            </p>
-            {% endfor %}
-            {% if not forloop.last %} <hr class="uk-divider-small"> {% endif %}
+        <div class="uk-card uk-card-default uk-card-body">
+        {% for harvestedcrop in area.list %}
+        <p>
+            <span class="uk-badge">{{area.grouper}}</span>&nbsp;
+            <a class="uk-link-text" href="{% url 'vegetablegarden:cropmanagement_list' harvestedcrop.pk %}">
+            <span class="uk-text-bold">{{harvestedcrop.vegetable}}</span>&nbsp;
+            <span class="uk-text-small uk-text-light">{{harvestedcrop.variety|default:""}}</span>
+            </a>
+            <br>
+            <span class="uk-text-meta">
+            {% if harvestedcrop.seeding_date %}播種日 {{harvestedcrop.seeding_date|date:"Y-m-d"}}&nbsp;{% endif %}
+            {% if harvestedcrop.planting_date %}植付日 {{harvestedcrop.planting_date|date:"Y-m-d"}}&nbsp;{% endif %}
+            {% if harvestedcrop.transplanting_date %}移植日 {{harvestedcrop.transplanting_date|date:"Y-m-d"}}&nbsp;{% endif %}
+            {% if harvestedcrop.harvest_date_start %}収穫開始日 {{harvestedcrop.harvest_date_start|date:"Y-m-d"}}&nbsp;{% endif %}
+            {% if harvestedcrop.harvest_date_end %}収穫完了日 {{harvestedcrop.harvest_date_end|date:"Y-m-d"}}{% endif %}            
+            </span>
+        </p>
         {% endfor %}
-        <div></div>
-</li>
+        </div>
+        {% if not forloop.last %}<br>{% endif %}
+        {% endfor %}
+    </li>
 </ul>
 {% endif %}
 {% endblock %}
