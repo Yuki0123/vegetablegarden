@@ -22,9 +22,9 @@
         <div class="" uk-grid>
         {% if cropmanagement.image %}
         <div class="uk-width-auto"><img src="{{ cropmanagement.image.url }}" width="50"></div>
-        <div class="uk-width-expand"><span class="uk-text-bold">{{cropmanagement.title}}</span><br>{{cropmanagement.text|truncatechars:50|linebreaksbr}}</div>
+        <div class="uk-width-expand"><span class="uk-text-bold">{{cropmanagement.title}}</span><br>{{cropmanagement.text|truncatechars:50}}</div>
         {% else %}
-        <div class="uk-width-1-1"><span class="uk-text-bold">{{cropmanagement.title}}</span><br>{{cropmanagement.text|truncatechars:50|linebreaksbr}}</div>
+        <div class="uk-width-1-1"><span class="uk-text-bold">{{cropmanagement.title}}</span><br>{{cropmanagement.text|truncatechars:50}}</div>
         {% endif %}
         </div>
     </dt>
