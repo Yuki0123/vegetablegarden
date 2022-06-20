@@ -9,7 +9,7 @@
 <a class="uk-link-toggle" href="{% url 'vegetablegarden:cropmanagement_list' cropmanagement.growing_crop.pk %}">
 <dl class="uk-description-list uk-link-heading">
     <dd>{{cropmanagement.date|date:"Y-m-d"}}</dd>
-    <dd>
+    <dd class="uk-background-muted">
         <span class="uk-badge">{{cropmanagement.growing_crop.area|truncatechars:8}}</span>
         <span class="uk-text-bold">{{cropmanagement.growing_crop.vegetable}}</span>&nbsp;
         <span class="uk-text-meta uk-text-small">{{cropmanagement.growing_crop.variety|truncatechars:20|default:""}}</span>
@@ -18,7 +18,7 @@
         <div class="" uk-grid>
         {% if cropmanagement.image %}
         <div class="uk-width-auto"><img src="{{ cropmanagement.image.url }}" width="100"></div>
-        <div class="uk-width-3-4">{{cropmanagement.text|truncatechars:50|linebreaksbr}}</div>
+        <div class="uk-width-4-5">{{cropmanagement.text|truncatechars:50|linebreaksbr}}</div>
         {% else %}
         <div class="uk-width-1-1">{{cropmanagement.text|truncatechars:50|linebreaksbr}}</div>
         {% endif %}
