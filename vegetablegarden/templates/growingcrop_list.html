@@ -6,7 +6,7 @@
 <p class="uk-h4"><i uk-icon="file-edit"></i>&nbsp;最新のお世話記録</p>
 
 {% for cropmanagement in cropmanagements %}
-<a class="uk-link-toggle" href="">
+<a class="uk-link-toggle" href="{% url 'vegetablegarden:cropmanagement_list' cropmanagement.growing_crop.pk %}">
 <dl class="uk-description-list uk-link-heading">
     <dd>{{cropmanagement.date|date:"Y-m-d"}}</dd>
     <dd>
