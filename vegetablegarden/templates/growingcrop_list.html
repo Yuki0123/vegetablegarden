@@ -49,7 +49,7 @@
         <div class="uk-card uk-card-default uk-card-body">
         {% for growingcrop in area.list %}
         <p>
-            <span class="uk-badge">{{area.grouper}}</span>&nbsp;
+            <span class="uk-badge">{{area.grouper|truncatechars:8}}</span>&nbsp;
             <a class="uk-link-text" href="{% url 'vegetablegarden:cropmanagement_list' growingcrop.pk %}">
             <span class="uk-text-bold">{{growingcrop.vegetable}}</span>&nbsp;
             <span class="uk-text-small uk-text-light">{{growingcrop.variety|default:""}}</span>
@@ -74,7 +74,7 @@
         <div class="uk-card uk-card-default uk-card-body">
         {% for harvestedcrop in area.list %}
         <p>
-            <span class="uk-badge|truncatechars:8">{{area.grouper}}</span>&nbsp;
+            <span class="uk-badge">{{area.grouper|truncatechars:8}}</span>&nbsp;
             <a class="uk-link-text" href="{% url 'vegetablegarden:cropmanagement_list' harvestedcrop.pk %}">
             <span class="uk-text-bold">{{harvestedcrop.vegetable}}</span>&nbsp;
             <span class="uk-text-small uk-text-light">{{harvestedcrop.variety|default:""}}</span>
