@@ -24,14 +24,13 @@
         <div class="uk-width-auto"><img src="{{ cropmanagement.image.url }}" width="50"></div>
         <div class="uk-width-expand">{{cropmanagement.text|truncatechars:50|linebreaksbr}}</div>
         {% else %}
-        <div class="uk-width-1-1">{{cropmanagement.text|truncatechars:50|linebreaksbr}}</div>
+        <div class="uk-width-1-1">{{cropmanagement.title}}<br>{{cropmanagement.text|truncatechars:50|linebreaksbr}}</div>
         {% endif %}
         </div>
     </dt>
 </dl>
 </a>
 {% if not forloop.last %}<hr class="uk-devider">{% endif %}
-
 
 {% endfor %}
 
@@ -42,7 +41,6 @@
     <li><a href="#"><i uk-icon="happy"></i>&nbsp;ただいま栽培中</a></li>
     <li><a href="#"><i uk-icon="album"></i>&nbsp;栽培終了</a></li>
 </ul>
-
 
 <ul class="uk-switcher uk-margin">
     <li>
@@ -76,7 +74,7 @@
         <div class="uk-card uk-card-default uk-card-body">
         {% for harvestedcrop in area.list %}
         <p>
-            <span class="uk-badge">{{area.grouper}}</span>&nbsp;
+            <span class="uk-badge|truncatechars:8">{{area.grouper}}</span>&nbsp;
             <a class="uk-link-text" href="{% url 'vegetablegarden:cropmanagement_list' harvestedcrop.pk %}">
             <span class="uk-text-bold">{{harvestedcrop.vegetable}}</span>&nbsp;
             <span class="uk-text-small uk-text-light">{{harvestedcrop.variety|default:""}}</span>
