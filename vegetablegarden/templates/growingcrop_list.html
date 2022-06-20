@@ -21,7 +21,7 @@
     <dt class="">
         <div class="" uk-grid>
         {% if cropmanagement.image %}
-        <div class="uk-width-auto"><img src="{{ cropmanagement.image.url }}" height="100"></div>
+        <div class="uk-width-auto"><img src="{{ cropmanagement.image.url }}" height="100px"></div>
         <div class="uk-width-4-5">{{cropmanagement.text|truncatechars:50|linebreaksbr}}</div>
         {% else %}
         <div class="uk-width-1-1">{{cropmanagement.text|truncatechars:50|linebreaksbr}}</div>
