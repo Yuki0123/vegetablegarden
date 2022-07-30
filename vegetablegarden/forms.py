@@ -1,7 +1,7 @@
 from django.utils import timezone
 from django import forms
 from django.db.models import fields
-from .models import Area,GrowingCrop,Vegetable,CropManagement
+from .models import Area,GrowingCrop, Reminder,Vegetable,CropManagement
 from django.contrib.admin.widgets import AdminDateWidget
 
 class GrowingCropCreateForm(forms.ModelForm):
@@ -92,6 +92,30 @@ class VegetableCreateForm(forms.ModelForm):
         model=Vegetable
         exclude = ('user',)
         widgets = {
-            'name' : forms.TextInput(attrs={'class': 'input'}),
-            'icon': forms.TextInput(attrs={'class': 'input'}),
+            'name' : forms.TextInput(attrs={'class': 'uk-input'}),
+            'icon': forms.TextInput(attrs={'class': 'uk-input'}),
             }
+
+class ReminderCreateForm(forms.ModelForm):
+
+    class Meta:
+        model=Reminder
+        exclude = ('user',)
+        widgets = {
+            'title' : forms.TextInput(attrs={'class': 'uk-input'}),
+            'days': forms.TextInput(attrs={'class': 'uk-input'}),
+            'base_date': AdminDateWidget(),
+            'calculation_date': AdminDateWidget(),
+            'text': forms.Textarea(attrs={'class': 'uk-textarea'}),           
+            }
+    
+    def __init__(self, *args, **kwargs):
+        self.cropmanagement_pk = kwargs.pop('cropmanagement_pk')
+
+        super(ReminderCreateForm, self).__init__(*args, **kwargs)
+        
+        self.fields['cropmanagement'].initial = self.cropmanagement_pk
+
+        self.fields['cropmanagement'].widget = forms.HiddenInput()
+        self.fields['cropmanagement'].label = ''
+

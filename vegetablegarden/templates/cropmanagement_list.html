@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+{{reminders}}
+
 {% with growingcrop=growingcrop.0 %}
 <div>
     <div class="uk-card uk-card-default uk-card-body">
@@ -62,6 +65,8 @@
     <a class="uk-button uk-button-text" href="{% url 'vegetablegarden:cropmanagement_update' cropmanagement.pk %}"><span uk-icon="pencil">編集</span></a>
     &nbsp;&nbsp;
     <a class="uk-button uk-button-text" href="{% url 'vegetablegarden:cropmanagement_delete' cropmanagement.pk %}"><span uk-icon="minus-circle">削除</span></a>
+    &nbsp;&nbsp;
+    <a class="uk-button uk-button-text" href="{% url 'vegetablegarden:reminder_create' cropmanagement.pk %}"><span uk-icon="clock">リマインダ―</span></a>
     </p>
 
 </article>

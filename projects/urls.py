@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('vegetablegarden.urls')), #2022.06.03
     path('accounts/', include('django.contrib.auth.urls')), #2022.06.03
+    #path('accounts/',include('allauth.urls')),#2022.06.23
 ]
 
 if settings.DEBUG:

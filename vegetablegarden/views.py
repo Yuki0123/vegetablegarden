@@ -1,9 +1,11 @@
+import datetime
 from django.shortcuts import render
-from .models import Vegetable, GrowingCrop,CropManagement
+from .models import Vegetable, GrowingCrop,CropManagement,Reminder
 from django.views import generic
 from django.urls import reverse_lazy,reverse
 from django.shortcuts import get_list_or_404, redirect
-from .forms import GrowingCropCreateForm, GrowingCropUpdateForm,CropManagementCreateForm,CropManagementUpdateForm,AreaCreateForm,VegetableCreateForm
+from .forms import GrowingCropCreateForm, GrowingCropUpdateForm,CropManagementCreateForm,CropManagementUpdateForm,AreaCreateForm, ReminderCreateForm,VegetableCreateForm
+
 
 # Create your views here.
 class VegetableCreate(generic.FormView):
@@ -32,6 +34,7 @@ class GrowingCropList(generic.ListView):
 
         context['cropmanagements']=CropManagement.objects.order_by('-date')[:5]
         context['harvestedcrops']=GrowingCrop.objects.filter(harvest_date_end__isnull=False).order_by('area__name')
+        context['reminders']=Reminder.objects.order_by('-calculation_date')
         return context
 
     def get_queryset(self):
@@ -95,6 +98,7 @@ class CropManagementList(generic.ListView):
             context['count']=0
 
         context['growingcrop']=self.growingcrop.filter(pk=self.kwargs['growingcrop_pk'])
+        context['reminders']=Reminder.objects.filter(cropmanagement__growing_crop=self.kwargs['growingcrop_pk'])
         context['title']='お世話ノート'
 
         return context
@@ -165,3 +169,31 @@ class CropManagementDelete(generic.DeleteView):
         print(self.object.growing_crop.pk)
         return reverse('vegetablegarden:cropmanagement_list', kwargs={"growingcrop_pk":self.object.growing_crop.pk})
 
+
+class ReminderCreate(generic.FormView):
+    form_class= ReminderCreateForm
+    template_name="reminder_create.html"
+    model = Reminder        
+    cropmanagement=CropManagement.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['cropmanagement']=self.cropmanagement.filter(pk=self.kwargs['cropmanagement_pk'])
+        context['title']='リマインダを追加'
+        return context
+
+    def get_form_kwargs(self):
+        kwargs = super(ReminderCreate, self).get_form_kwargs()
+        kwargs['cropmanagement_pk'] = self.kwargs['cropmanagement_pk']
+        return kwargs    
+
+    def form_valid(self, form):
+        instance=form.save(commit=False)
+        instance.user=self.request.user
+
+        if instance.unit == '週間後':
+            #days_add=instance.days * 7
+            instance.calculation_date = instance.base_date + datetime.timedelta(days=instance.days * 7)
+
+        self.object=form.save()
+        return redirect('vegetablegarden:cropmanagement_list', growingcrop_pk=instance.cropmanagement.growing_crop_id)

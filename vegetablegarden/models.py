@@ -54,3 +54,14 @@ class CropManagement(models.Model):
     def __str__(self) -> str:
         return self.title
 
+class Reminder(models.Model):
+    cropmanagement = models.ForeignKey(CropManagement, verbose_name='栽培管理',null=True, on_delete=models.SET_NULL)
+    title = models.CharField(verbose_name='項目', max_length=255)
+    days = models.IntegerField(verbose_name='日数', null=True, blank=True)
+    unit = models.CharField(verbose_name='単位', max_length=255)
+    base_date = models.DateField(verbose_name='基準日', null=True, blank=True)
+    calculation_date = models.DateField(verbose_name='算出日', null=True, blank=True)
+    text= models.TextField(verbose_name='内容', null=True, blank=True)
+
+    def __str__(self) -> str:
+        return '{} {}'.format(self.title,self.calculation_date)

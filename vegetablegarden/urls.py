@@ -27,5 +27,6 @@ urlpatterns = [
    path('cropmanagement_update/<int:pk>/',views.CropManagementUpdate.as_view(), name='cropmanagement_update'),
    path('cropmanagement_delete/<int:pk>/',views.CropManagementDelete.as_view(), name='cropmanagement_delete'),
    path('vegetable_create/',views.VegetableCreate.as_view(), name='vegetable_create'),
+   path('reminder_create/<int:cropmanagement_pk>/',views.ReminderCreate.as_view(), name='reminder_create'),
 ]
 

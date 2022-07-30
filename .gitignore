@@ -1,5 +1,6 @@
 *.pyc
 *~
+/.venv
 /.vscode
 __pycache__
 myvenv
@@ -11,3 +12,6 @@ cloud_sql_proxy.exe
 settings.py
 /media
 /static/admin
+/static/uikit-3.15.0
+/vegetablegarden/migrations
+/accounts/migrations

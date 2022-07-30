@@ -2,7 +2,24 @@
 {% load tags %}
 
 {% block content %}
+<p class="uk-h4"><i uk-icon="file-edit"></i>&nbsp;予定表</p>
 
+{% for reminder in reminders %}
+    <dl class="uk-description-list uk-link-heading">
+        <dd>
+            <div>
+                <a href="{% url 'vegetablegarden:cropmanagement_list' reminder.cropmanagement.growing_crop.pk %}">
+                <span>{{reminder.calculation_date|date:"Y-m-d"}}</span>
+                <span class="uk-badge">{{reminder.cropmanagement.growing_crop.area}}</span>
+                <span class="uk-badge">{{reminder.cropmanagement.growing_crop.vegetable}}</span>
+                <span class="uk-text-bold">{{reminder.title}}</span>
+                <span>{{reminder.text}}</span>
+                </a>
+            </div>
+        </dd>
+    </dl>
+{% endfor %}
+<br>
 <p class="uk-h4"><i uk-icon="file-edit"></i>&nbsp;最新のお世話記録</p>
 
 {% for cropmanagement in cropmanagements %}
@@ -13,7 +30,7 @@
             <div class="uk-width-expand">
                 <span class="uk-badge">{{cropmanagement.growing_crop.area|truncatechars:5}}</span>
                 <span class="uk-text-bold">{{cropmanagement.growing_crop.vegetable}}</span><br>
-                <span class="uk-text-meta uk-text-small">{{cropmanagement.growing_crop.variety|default:""|truncatechars:20}}</span>        
+                <span class="uk-text-meta uk-text-small">{{cropmanagement.growing_crop.variety|default:""|truncatechars:20}}</span>   
             </div>
             <div>{{cropmanagement.date|date:"Y-m-d"}}</div>
         </div>
