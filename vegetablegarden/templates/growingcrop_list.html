@@ -3,15 +3,17 @@
 
 {% block content %}
 <p class="uk-h4"><i uk-icon="file-edit"></i>&nbsp;予定表</p>
-
+<div class="uk-card uk-card-default uk-card-body">
 {% for reminder in reminders %}
     <dl class="uk-description-list uk-link-heading">
         <dd>
             <div>
                 <a href="{% url 'vegetablegarden:cropmanagement_list' reminder.cropmanagement.growing_crop.pk %}">
-                <span>{{reminder.calculation_date|date:"Y-m-d"}}</span>
                 <span class="uk-badge">{{reminder.cropmanagement.growing_crop.area}}</span>
                 <span class="uk-badge">{{reminder.cropmanagement.growing_crop.vegetable}}</span>
+                <span class="uk-badge">{{reminder.cropmanagement.growing_crop.variety}}</span><br>
+
+                <span>{{reminder.calculation_date|date:"Y-m-d"}}</span>
                 <span class="uk-text-bold">{{reminder.title}}</span>
                 <span>{{reminder.text}}</span>
                 </a>
@@ -19,9 +21,10 @@
         </dd>
     </dl>
 {% endfor %}
+</div>
 <br>
 <p class="uk-h4"><i uk-icon="file-edit"></i>&nbsp;最新のお世話記録</p>
-
+<div class="uk-card uk-card-default uk-card-body">
 {% for cropmanagement in cropmanagements %}
 <a class="uk-link-toggle" href="{% url 'vegetablegarden:cropmanagement_list' cropmanagement.growing_crop.pk %}">
 <dl class="uk-description-list uk-link-heading">
@@ -50,9 +53,10 @@
 {% if not forloop.last %}<hr class="uk-devider">{% endif %}
 
 {% endfor %}
+</div>
+<br>
 
 {% if growingcrop_list.count > 0 %}
-<hr class="uk-divider-icon">
 
 <ul uk-tab>
     <li><a href="#"><i uk-icon="happy"></i>&nbsp;ただいま栽培中</a></li>
